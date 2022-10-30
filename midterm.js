@@ -1,5 +1,7 @@
+let x,y;
 let fish1;
 let fish2;
+let bubble;
 let fishArray = [];
 let fish2Array = [];
 let bubbleArray = [];
@@ -7,8 +9,7 @@ let bubbleArray = [];
 function setup(){
   createCanvas(800,800);
   //create fish
-  for(i = 0; i<= 3; i++){
-    
+  for(i = 0; i<= 3; i++){  
    fishArray.push (new Fish(50*i,200+50*i,[random(99,174),random(217,240),random(103,107)])); 
   }
   
@@ -16,9 +17,10 @@ function setup(){
     fish2Array.push(new Fish(750,200+50*i, 255));
   }
   // print(fish1.x,fish1.y)
-  
+ //bubble = new Bubble();
   for(i = 0; i<=3; i++){
-    bubbleArray.push(new Bubble(createVector(100*i, 200)));
+    bubbleArray.push(new Bubble(random(10,700), random(10,700)));
+    //bubbleArray.push(new Bubble(createVector(100*i, 200)));
   }
   
 }
@@ -46,6 +48,15 @@ background(67,213,246);
     fish2Array[i].moveOpposite();
     fish2Array[i].display();   
   }
+  
+  for(i =0; i<=200; i+=10){
+    bubbleArray[i].update();
+    bubbleArray[i].display();
+    
+  }
+  
+ // bubble1.move();
+  //bubble1.display();
  }
 
  class Fish{
@@ -69,14 +80,31 @@ constructor(x,y,fishcolor){
  }
 
 class Bubble{
-  constructor(pos){
-    this.pos = pos;
+  constructor(x,y){
+    this.position = new createVector(700,50);
+    this.velocity = new createVector(1,2);
+   // this.speed = 1;
+   // this.pos = pos;
   }
-  move(){
-    this.y = this.y +5; 
+  update(){
+    this.position.add(this.velocity);
+    
+    if((this.position.x > width) || (this.position.x < 0)){
+      this.velocity.x = this.velocity.x*-1;
+    }
+    if((this.position.y > height) || (this.position.y < 0)){
+      this.velocity.y = this.velocity.y * -1;
+    }
   }
+  //move(){
+   // this.pos.y = this.pos.y + 5; 
+ // }
   display(){
-    ellipse(this.pos.x,this.pos.y,60,20);
+    stroke(255);
+    strokeWeight(2);
+    fill(148,233,250);
+    //ellipse(x,y,10,10);
+    ellipse(this.position.x,this.position.y,10,10);
   }
   
   
