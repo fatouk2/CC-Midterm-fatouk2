@@ -1,3 +1,5 @@
+let x = 500;
+let y = 500;
 let bubble;
 let bubbleArray = [];
 let fishes;
@@ -20,7 +22,9 @@ function draw() {
   background(21,171,255);
   fill(255);
   sand();
-  
+  for(x = 100; x<=width; x+=200){
+  seatree(x,550);
+  }
 //  bubble.display();
   //bubble.move();
   //bubble.update();
@@ -39,16 +43,16 @@ function draw() {
 
 function sand(){
   strokeWeight(5);
-  stroke(255,231,100,70)
-  fill(255,231,100);
+  stroke(250,191,97,70)
+  fill(250,191,97);
    ellipse(550,550,500,200);  // sand
   ellipse(150,550,500,200);  //sand  
 }
 
-function seatree(){
-  
-  
-  
+function seatree(x,y){
+  fill(255);
+  ellipse(x,y-50,30,100);
+  ellipse(x+30,y-50,50,20);
 }
 
 class Fish {
@@ -56,7 +60,7 @@ class Fish {
   this.position = new createVector(random(width),random(height));
   //  this.position = new createVector(100,600);
     
-    this.velocity = new createVector(1,2);
+    this.velocity = new createVector(1);
     //this.size = random(5,20);
     
     this.fishcolor = fishcolor;
@@ -71,7 +75,8 @@ class Fish {
      //this.velocity.x = this.velocity.x *-1 
     }
     if (this.position.y > 300){
-      this.position.y = 0;
+      //this.position.y = this.position.y *-1;
+     this.position.y = random(100,300);
       //this.velocity.y = this.velocity.y *-1
     }
   }
