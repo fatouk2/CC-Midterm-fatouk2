@@ -7,11 +7,12 @@ let bubbleArray = [];
 let bubble2 = [];
 let fishes;
 let fish = [];
-let waterArray = [];
 let c = 25;
 let c1;
 let c2;
 let weeds=[];
+tree = [];
+leaf = [];
 function setup() {
  
   count = 2000;
@@ -21,7 +22,7 @@ function setup() {
   background(255);
    c1 = color(162,253,255);
   c2 = color(48,130,255);
- for(i= 0; i< 60; i++){
+ for(i= 0; i< 90; i++){
    weeds.push(new seaWeed(i));
  }
   for(i = 0; i < 10; i++){
@@ -30,13 +31,19 @@ function setup() {
    for(i = 0; i < 30; i++){
   bubbleArray.push(new Bubble(i));
 }
-  for(i = 0; i < 10; i++){
-    waterArray.push(new Water(i));
-  }
+ 
   
   for(i = 0; i<10;i++){
     bubble2.push(new Bubble2(i));
   }
+   for(i = 0;i<20;i++){
+   tree.push(new drawTrees(i));
+    //trees = new drawTrees();
+  }
+  for(i = 0; i<1000; i++){
+    leaf.push(new drawLeaves(i));
+  }
+  
   
 }
 
@@ -48,7 +55,7 @@ function draw() {
    // background(0);
  rect1();
  
-for(j=0;j<60;j++){
+for(j=0;j<90;j++){
   weeds[j].show();
 }
   for(j = 0; j < 10; j++){
@@ -70,20 +77,24 @@ for(j=0;j<60;j++){
   }
 }
   if(frameCount > 500 && frameCount < 1000){
-    background(255);
-    fill(99,192,255);
-    rect(0,300,width,400);
-    for(i = 0; i<10; i ++){
-      waterArray[i].display();
-      waterArray[i].move();
-      waterArray[i].update();
-    }
-    for(i = 0; i<10; i ++){
-      waterArray[i].display();
-      waterArray[i].update();
-    }
+    background(60,243,245,96);
+  fill(255,247,96);
+  circle(400,100,200);
+  fill(33,255,6);
+  rect(0,700,width,100);
+  fill(88,245,245);
+  ellipse(400,750,400,100,90);
     
+    fishs(mouseX,750);
+  for(j = 0; j<20; j++){
+    tree[j].show();
   }
+  for(j = 0; j<1000; j++){
+    leaf[j].show();
+  }
+  
+}
+
   
 }
 
@@ -192,7 +203,7 @@ class seaWeed{
     this.x = random(0,width);
     this.y = random(300,500);
     this.width = random(10,15);
-    this.height = 300;
+    this.height = 500;
     this.curve = 20;
     this.color = ([random(9,174),random(121,255),random(105,175)]);
   }
@@ -202,6 +213,45 @@ class seaWeed{
   }
   
   
+}
+
+class drawTrees{
+  constructor(){
+    this.x = random(0,width);
+    this.y = 300;
+    this.colors = ([random(128,205), random(0,133), random(0,63)]);
+  }
+  show(){
+    fill(this.colors);
+    rect(this.x,this.y,50,400);
+    
+  }
+}
+
+class drawLeaves{
+  constructor(){
+    this.x = random(0,width);
+    this.y = random(200,500);
+    this.color = ([random(47, 210), 255, random(5, 103)]);
+  }
+  show(){
+    noStroke();
+    fill(this.color);
+    circle(this.x,this.y,25);
+    
+  }
+}
+
+class drawFlowers{
+  constructor(){
+    this.x = random(0,width);
+    this.y = (500,800);
+    this.color = ([random(145,230),random(95,230),random(109,250)]);
+  }
+  show(){
+    fill(this.color);
+   flow(this.x,this.y,30)
+  }
 }
 
 class Bubble2 {
