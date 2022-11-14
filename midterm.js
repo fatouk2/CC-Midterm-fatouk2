@@ -1,4 +1,4 @@
-let x = 500;
+let x = 300;
 let y = 500;
 let count;
 let current;
@@ -84,8 +84,10 @@ for(j=0;j<90;j++){
   rect(0,700,width,100);
   fill(88,245,245);
   ellipse(400,750,400,100,90);
+    fill(227,98,244);
+      fishs(x,750);
     
-    fishs(mouseX,750);
+    fishs(x,750);
   for(j = 0; j<20; j++){
     tree[j].show();
   }
@@ -242,17 +244,7 @@ class drawLeaves{
   }
 }
 
-class drawFlowers{
-  constructor(){
-    this.x = random(0,width);
-    this.y = (500,800);
-    this.color = ([random(145,230),random(95,230),random(109,250)]);
-  }
-  show(){
-    fill(this.color);
-   flow(this.x,this.y,30)
-  }
-}
+
 
 class Bubble2 {
   constructor(){
